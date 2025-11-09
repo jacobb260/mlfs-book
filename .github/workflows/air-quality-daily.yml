@@ -2,8 +2,8 @@ name: air-quality-daily
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '11 6 * * *'
+    #schedule:
+    #- cron: '11 6 * * *'
 
 jobs:
   schedule_pipelines:
@@ -31,7 +31,6 @@ jobs:
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
         run: |
-          echo "HOPSWORKS_API_KEY=${{ secrets.HOPSWORKS_API_KEY }}" >> .env
           make aq-inference
       - name: github pages publish
         uses: stefanzweifel/git-auto-commit-action@v5
